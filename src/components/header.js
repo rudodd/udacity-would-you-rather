@@ -1,5 +1,5 @@
 import react from 'react';
-import Menu from './menu';
+import Menu from './Menu';
 
 class Header extends react.Component {
 

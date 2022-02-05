@@ -1,12 +1,12 @@
 import * as actionTypes from '../action-types';
 
-const loading = (state = true, action)=> {
+const questions = (state = [], action)=> {
   switch(action.type) {
     case actionTypes.RECEIVE_DATA:
-      return false
+      return action.questions
     default:
       return state
   }
 }
 
-export default loading;
+export default questions;

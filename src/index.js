@@ -1,19 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { BrowserRouter } from 'react-router-dom';
 import * as Redux from 'redux';
 import { Provider, connect } from 'react-redux';
 import * as ReduxThunk from 'redux-thunk';
-// import * as Data from './_DATA.js';
-
-// Import actions
-import initialDataHandler from './actions/data';
 
 // Import reducers
 import loading from './reducers/loading';
+import loggedIn from './reducers/logged-in';
+import users from './reducers/users';
+import questions from './reducers/questions';
 
 // Import components
-import App from './components/app';
+import App from './components/App';
 
 // Middleware
 const logger = (store) => (next) => (action) => {
@@ -27,11 +25,16 @@ const logger = (store) => (next) => (action) => {
 
 const store = Redux.createStore(Redux.combineReducers({
   loading,
+  loggedIn,
+  users,
+  questions
 }), Redux.applyMiddleware(ReduxThunk.default, logger));
-store.dispatch(initialDataHandler());
 
 const ConnectedApp = connect((state) => ({
-  loading: state.loading
+  loading: state.loading,
+  loggedIn: state.loggedIn,
+  users: state.users,
+  questions: state.questions
 }))(App)
 
 ReactDOM.render(

@@ -2,12 +2,7 @@ import * as actionTypes from '../action-types';
 import * as Data from '../_DATA';
 
 // Action Object
-function receiveDataObject (users, questions) {
-  // console.log({
-  //   type: actionTypes.RECEIVE_DATA,
-  //   users,
-  //   questions,
-  // });
+function getDataObject (users, questions) {
   return {
     type: actionTypes.RECEIVE_DATA,
     users,
@@ -16,15 +11,15 @@ function receiveDataObject (users, questions) {
 }
 
 // Action Handler
-function initialDataHandler () {
+function getDataHandler () {
   return (dispatch) => {
     return Promise.all([
       Data._getUsers(),
       Data._getQuestions()
     ]).then(([ users, questions ]) => {
-      dispatch(receiveDataObject(users, questions))
+      dispatch(getDataObject(users, questions))
     })
   }
 }
 
-export default initialDataHandler;
+export default getDataHandler;

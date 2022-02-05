@@ -5,15 +5,20 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 
 // Import Components, etc...
 import '../dist/css/app.css';
-import Home from './home';
-import Question from './question';
-import Leaders from './leaders';
-import Header from './header';
+import LoginForm from './LoginForm'
+import Header from './Header';
+import Home from './Home';
+import Question from './Question';
+import Leaders from './Leaders';
+
+// Import actions
+import getDataHandler from '../actions/data';
 
 class App extends react.Component {
 
   componentDidMount () {
-    
+    const { dispatch } = this.props;
+    dispatch(getDataHandler())
   }
 
   render() {
@@ -21,6 +26,12 @@ class App extends react.Component {
     if (this.props.loading) {
       return (
         <h1>Loading...</h1>
+      )
+    }
+
+    if (this.props.loggedIn) {
+      return (
+        <LoginForm users={this.props.users} />
       )
     }
 
