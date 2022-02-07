@@ -8,14 +8,15 @@ import loginHandler from '../actions/login';
 class LoginForm extends React.Component {
 
   render() {
+    const { store } = this.props;
 
     const selectOptions = [];
-    for (let user in this.props.users) {
+    for (let user in store.users) {
       let optionObject = {
-        value: this.props.users[user].id,
+        value: store.users[user].id,
         label: <div className="user-select">
-                <img src={this.props.users[user].avatarURL} alt={this.props.users[user].name} />
-                <p>{this.props.users[user].name}</p>
+                <img src={store.users[user].avatarURL} alt={store.users[user].name} />
+                <p>{store.users[user].name}</p>
                </div>
       };
       selectOptions.push(optionObject);
@@ -25,9 +26,11 @@ class LoginForm extends React.Component {
       e.preventDefault();
       let user = this.refs.userOption.state.selectValue;
       if (user.length) {
-        this.props.dispatch(loginHandler(user[0].value));
+        store.dispatch(loginHandler(user[0].value));
       }
     }
+    // this.props.history.push('/');
+    console.log(this.props.history);
 
     return(
       <div className="login-form-wrapper">

@@ -8,6 +8,7 @@ import '../dist/css/app.css';
 import LoginForm from './LoginForm'
 import Header from './Header';
 import Home from './Home';
+import Poll from './Poll';
 import Question from './Question';
 import Leaders from './Leaders';
 
@@ -31,7 +32,7 @@ class App extends react.Component {
 
     if (!this.props.session.loggedIn) {
       return (
-        <LoginForm users={this.props.users} dispatch={this.props.dispatch} />
+        <LoginForm store={this.props} />
       )
     }
 
@@ -40,7 +41,8 @@ class App extends react.Component {
         <div className="app-wrapper">
           <Header store={this.props} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home store={this.props} />} />
+            <Route exact path="/poll/:id" element={<Poll />} />
             <Route exact path="/question" element={<Question />} />
             <Route exact path="/leaders" element={<Leaders />} />
           </Routes>

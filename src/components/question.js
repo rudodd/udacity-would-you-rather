@@ -3,9 +3,11 @@ import react from 'react';
 class Question extends react.Component {
 
   render() {
+    const { store } = this.props;
+    console.log(store);
 
     return (
-      <div className="question-wrapper"></div>
+      <div className="new-question-wrapper"></div>
     )
   }
 };
