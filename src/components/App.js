@@ -29,16 +29,16 @@ class App extends react.Component {
       )
     }
 
-    if (this.props.loggedIn) {
+    if (!this.props.session.loggedIn) {
       return (
-        <LoginForm users={this.props.users} />
+        <LoginForm users={this.props.users} dispatch={this.props.dispatch} />
       )
     }
 
     return (
       <BrowserRouter>
         <div className="app-wrapper">
-          <Header />
+          <Header store={this.props} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route exact path="/question" element={<Question />} />

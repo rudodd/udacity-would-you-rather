@@ -6,7 +6,7 @@ import * as ReduxThunk from 'redux-thunk';
 
 // Import reducers
 import loading from './reducers/loading';
-import loggedIn from './reducers/logged-in';
+import session from './reducers/session';
 import users from './reducers/users';
 import questions from './reducers/questions';
 
@@ -25,14 +25,14 @@ const logger = (store) => (next) => (action) => {
 
 const store = Redux.createStore(Redux.combineReducers({
   loading,
-  loggedIn,
+  session,
   users,
   questions
 }), Redux.applyMiddleware(ReduxThunk.default, logger));
 
 const ConnectedApp = connect((state) => ({
   loading: state.loading,
-  loggedIn: state.loggedIn,
+  session: state.session,
   users: state.users,
   questions: state.questions
 }))(App)

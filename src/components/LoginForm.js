@@ -1,22 +1,32 @@
 import React from 'react';
-class User extends React.Component {
+import Select from 'react-select';
+import { Consumer } from 'react-redux';
 
-  render() {
-
-    return(
-      <option value={this.props.user.id}>
-        {this.props.user.name}
-      </option>
-    )
-  }
-}
+// Import actions
+import loginHandler from '../actions/login';
 
 class LoginForm extends React.Component {
 
   render() {
-    let users = [];
+
+    const selectOptions = [];
     for (let user in this.props.users) {
-      users.push(this.props.users[user]);
+      let optionObject = {
+        value: this.props.users[user].id,
+        label: <div className="user-select">
+                <img src={this.props.users[user].avatarURL} alt={this.props.users[user].name} />
+                <p>{this.props.users[user].name}</p>
+               </div>
+      };
+      selectOptions.push(optionObject);
+    };
+
+    const loginSubmit = (e)=> {
+      e.preventDefault();
+      let user = this.refs.userOption.state.selectValue;
+      if (user.length) {
+        this.props.dispatch(loginHandler(user[0].value));
+      }
     }
 
     return(
@@ -28,12 +38,10 @@ class LoginForm extends React.Component {
         <div className="login-logo">
           {/* Logo goes here */}
         </div>
-        <form>
+        <form className="login-form" onSubmit={loginSubmit}>
           <h2>Login</h2>
-          <select id="login-select">
-            {users.map((user, index)=> <User key={index} user={user} />)}
-          </select>
-          <button>Login</button>
+          <Select ref="userOption" className="login-select-container" classNamePrefix="login-select" options={selectOptions} />
+          <button type="submit">Login</button>
         </form>
       </div>
     )

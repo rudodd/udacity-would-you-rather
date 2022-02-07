@@ -1,0 +1,17 @@
+// Login form styles
+.login-form-wrapper {
+
+  .login-form {
+
+    .user-select {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+      }
+    }
+  }
+}

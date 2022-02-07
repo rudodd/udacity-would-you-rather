@@ -1,12 +1,18 @@
 import react from 'react';
 import Menu from './Menu';
 
+// Import actions
+import loginHandler from '../actions/login';
+
 class Header extends react.Component {
 
   render() {
-    let state = {
-      user: 'John Doe',
-      avatar: '/img/avatars/john.jpg',
+
+    const store = this.props.store;
+    const sessionUser = store.session.user;
+    const user = this.props.store.users[sessionUser];
+    const logOut = ()=> {
+      this.props.store.dispatch(loginHandler());
     }
 
     const menuLinks = [
@@ -31,10 +37,10 @@ class Header extends react.Component {
             <Menu links={menuLinks} />
           </nav>
           <div className="user-info">
-            <p>Hello {state.user}</p>
-            <img className="avatar" src={state.avatar} alt={state.user} />
+            <p>Hello {user.name}</p>
+            <img className="avatar" src={user.avatarURL} alt={user.name} />
           </div>
-          <button>Logout</button>
+          <button onClick={logOut}>Logout</button>
         </div>
       </header>
     )

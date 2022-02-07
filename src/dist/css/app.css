@@ -1,3 +1,18 @@
 /**
  * App Styles ************************************************
  */
+.login-form-wrapper .login-form .user-select {
+  display: flex;
+  align-items: center; }
+  .login-form-wrapper .login-form .user-select img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%; }
+
+.login-form-wrapper .login-form .user-select {
+  display: flex;
+  align-items: center; }
+  .login-form-wrapper .login-form .user-select img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%; }
