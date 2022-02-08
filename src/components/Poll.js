@@ -20,8 +20,8 @@ const calculateVotes = (id, users)=> {
     return matches.length ? matches : false;
   }).length;
   const totalVotes = optionOneVotes + optionTwoVotes;
-  const optionOnePerent = (optionOneVotes / totalVotes) * 100;
-  const optionTwoPercent = (optionTwoVotes / totalVotes) * 100;
+  const optionOnePerent = Math.round((optionOneVotes / totalVotes) * 100);
+  const optionTwoPercent = Math.round((optionTwoVotes / totalVotes) * 100);
   return {
     winner: optionOneVotes > optionTwoVotes ? 'optionOne' : 'optionTwo',
     percents: {
