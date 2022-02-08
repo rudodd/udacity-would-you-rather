@@ -1,6 +1,6 @@
 // Import libraries
 import react from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -12,6 +12,7 @@ import Home from './Home';
 import Poll from './Poll';
 import Question from './Question';
 import Leaders from './Leaders';
+import NotFound from './NotFound';
 
 // Import actions
 import getDataHandler from '../actions/data';
@@ -31,6 +32,11 @@ class App extends react.Component {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(getDataHandler())
+    .then(()=> {
+      this.setState({
+        redirect: this.props.sessionloggedIn && window.location.pathname != '/' ? false : true,
+      })
+    })
   }
 
   render() {
@@ -43,7 +49,9 @@ class App extends react.Component {
 
     if (!this.props.session.loggedIn) {
       return (
-        <LoginForm store={this.props} />
+        <BrowserRouter>
+          <LoginForm store={this.props} />
+        </BrowserRouter>
       )
     }
 
@@ -52,10 +60,11 @@ class App extends react.Component {
         <div className="app-wrapper">
           <Header store={this.props} />
           <Routes>
-            <Route path="/" element={<Home store={this.props} />} />
-            <Route exact path="/poll/:id" element={<Poll />} />
-            <Route exact path="/question" element={<ConnectedQuestion />} />
-            <Route exact path="/leaders" element={<ConnectedLeaders />} />
+            <Route exact path="/" element={<Home store={this.props} />} />
+            <Route exact path="/question/:id" element={<Poll />} />
+            <Route exact path="/add" element={<ConnectedQuestion />} />
+            <Route exact path="/leaderboard" element={<ConnectedLeaders />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+// Import custom components
+import NotFound from './NotFound';
+
 // Import actions
 import answerHandler from '../actions/answer';
 
@@ -60,8 +63,14 @@ const getVoteData = (id, users, user, questions)=> {
 class PollQuestion extends React.Component {
 
   render() {
-
     const { questions, users, id, session, dispatch } = this.props;
+
+    if (typeof questions[id] === 'undefined') {
+      return (
+        <NotFound />
+      )
+    }
+
     const question = questions[id];
     const user = users[session.user];
     const author = users[question.author];
@@ -107,7 +116,6 @@ class PollQuestion extends React.Component {
                 <p>{voteData.optionTwo.count} out of {voteData.totalVotes} votes</p>
               </div>
             </div>
-            <Link to={`/poll/${question.id}`}>View Poll</Link>
           </div>
         </div>
       );

@@ -16,7 +16,7 @@ class HomeQuestion extends React.Component {
           <p>{question.optionOne.text}</p>
           <p>or</p>
           <p>{question.optionTwo.text}</p>
-          <Link to={`/poll/${question.id}`}>View Poll</Link>
+          <Link to={`/question/${question.id}`}>View Poll</Link>
         </div>
       </div>
     )

@@ -22,11 +22,11 @@ class Header extends react.Component {
       },
       {
         name: 'New Question',
-        href: '/question'
+        href: '/add'
       },
       {
         name: 'Leader Board',
-        href: '/leaders'
+        href: '/leaderboard'
       }
     ];
 
