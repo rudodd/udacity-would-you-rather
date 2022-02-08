@@ -6,6 +6,8 @@ const users = (state = [], action)=> {
       return action.users
     case actionTypes.SAVE_ANSWER:
       return action.users
+    case actionTypes.CREATE_QUESTION:
+      return action.users
     default:
       return state
   }

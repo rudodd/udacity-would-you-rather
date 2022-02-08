@@ -6,6 +6,8 @@ const questions = (state = [], action)=> {
       return action.questions
     case actionTypes.SAVE_ANSWER:
       return action.questions
+    case actionTypes.CREATE_QUESTION:
+      return action.questions
     default:
       return state
   }

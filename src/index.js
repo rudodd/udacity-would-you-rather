@@ -13,22 +13,16 @@ import questions from './reducers/questions';
 // Import components
 import App from './components/App';
 
-// Middleware
-const logger = (store) => (next) => (action) => {
-  console.group(action.type)
-    console.log('The action: ', action)
-    const result = next(action)
-    console.log('The new state: ', store.getState())
-  console.groupEnd()
-  return result
-}
+// Import middleware
+import logger from './middleware/logger';
+import validate from './middleware/validate';
 
 const store = Redux.createStore(Redux.combineReducers({
   loading,
   session,
   users,
   questions,
-}), Redux.applyMiddleware(ReduxThunk.default, logger));
+}), Redux.applyMiddleware(ReduxThunk.default, logger, validate));
 
 const ConnectedApp = connect((state) => ({
   loading: state.loading,

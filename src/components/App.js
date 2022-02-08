@@ -1,6 +1,7 @@
 // Import libraries
 import react from 'react';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 // Import Components, etc...
@@ -14,6 +15,12 @@ import Leaders from './Leaders';
 
 // Import actions
 import getDataHandler from '../actions/data';
+
+const ConnectedQuestion = connect((state) => ({
+  session: state.session,
+  users: state.users,
+  questions: state.questions
+}))(Question);
 
 class App extends react.Component {
 
@@ -43,7 +50,7 @@ class App extends react.Component {
           <Routes>
             <Route path="/" element={<Home store={this.props} />} />
             <Route exact path="/poll/:id" element={<Poll />} />
-            <Route exact path="/question" element={<Question />} />
+            <Route exact path="/question" element={<ConnectedQuestion />} />
             <Route exact path="/leaders" element={<Leaders />} />
           </Routes>
         </div>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 // Import actions
 import answerHandler from '../actions/answer';
 
-const calculateVotes = (id, questions)=> {
+const calculateVotes = (id, users, questions)=> {
   const optionOneVotes = questions[id].optionOne.votes.length;
   const optionTwoVotes = questions[id].optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
@@ -26,8 +26,8 @@ const calculateVotes = (id, questions)=> {
   }
 }
 
-const getVoteData = (id, user, questions)=> {
-  let votes = calculateVotes(id, questions);
+const getVoteData = (id, users, user, questions)=> {
+  let votes = calculateVotes(id, users, questions);
   const optionOneVoteClassArray = ['poll-answer'];
   const optionTwoVoteClassArray = ['poll-answer'];
   if (user.answers[id] === 'optionOne') {
@@ -40,8 +40,8 @@ const getVoteData = (id, user, questions)=> {
   } else {
     optionTwoVoteClassArray.push('winner');
   }
-  const optionOneClasses = optionOneVoteClassArray.length ? optionOneVoteClassArray.join(' ') : '';
-  const optionTwoClasses = optionTwoVoteClassArray.length ? optionTwoVoteClassArray.join(' ') : '';
+  const optionOneClasses = optionOneVoteClassArray.join(' ');
+  const optionTwoClasses = optionTwoVoteClassArray.join(' ');
   return {
     totalVotes: votes.counts.total,
     optionOne: {
@@ -60,6 +60,7 @@ const getVoteData = (id, user, questions)=> {
 class PollQuestion extends React.Component {
 
   render() {
+
     const { questions, users, id, session, dispatch } = this.props;
     const question = questions[id];
     const user = users[session.user];
@@ -75,7 +76,7 @@ class PollQuestion extends React.Component {
     }
 
     if (answered.length) {
-      const voteData = getVoteData(id, user, questions);
+      const voteData = getVoteData(id, users, user, questions);
       return (
         <div className="poll-question">
           <h2>Results:</h2>
