@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+// Import actions
+import answerHandler from '../actions/answer';
+
 const calculateVotes = (id, users)=> {
   const optionOneVotes = Object.entries(users).filter((user)=> {
     let matches = Object.entries(user[1].answers).filter((answer)=> {
@@ -67,13 +70,20 @@ const getVoteData = (id, users, user)=> {
 class PollQuestion extends React.Component {
 
   render() {
-    const { questions, users, id, session } = this.props;
+
+    const { questions, users, id, session, dispatch } = this.props;
     const question = questions[id];
     const user = users[session.user];
     const author = users[question.author];
     const answered = Object.entries(user.answers).filter((answer)=> {
       return id === answer[0];
     });
+
+    const answerSubmit = (e)=> {
+      e.preventDefault();
+      const answer = e.target[0].checked ? 'optionOne' : 'optionTwo';
+      dispatch(answerHandler(user.id, id, answer));
+    }
 
     if (answered.length) {
       const voteData = getVoteData(id, users, user);
@@ -119,7 +129,7 @@ class PollQuestion extends React.Component {
         <div className="poll-question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
         <div className="poll-question-detail">
           <h3>Would you rather</h3>
-          <form className="poll-form">
+          <form className="poll-form" onSubmit={answerSubmit}>
             <div className="input-wrapper">
               <input value="optionOne" type="radio" name="answer" id="optionOne" />
               <label htmlFor="optionOne">{question.optionOne.text}</label>
@@ -129,8 +139,8 @@ class PollQuestion extends React.Component {
               <input value="optionTwo" type="radio" name="answer" id="optionTwo" />
               <label htmlFor="optionTwo">{question.optionTwo.text}</label>
             </div>
+            <button type="submit">Submit</button>
           </form>
-          <button type="submit">Submit</button>
         </div>
       </div>
     );
@@ -139,7 +149,6 @@ class PollQuestion extends React.Component {
 }
 
 const ConnectedPollQuestion = connect((state) => ({
-  loading: state.loading,
   session: state.session,
   users: state.users,
   questions: state.questions

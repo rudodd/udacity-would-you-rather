@@ -1,6 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import { Consumer } from 'react-redux';
 
 // Import actions
 import loginHandler from '../actions/login';
@@ -29,8 +28,6 @@ class LoginForm extends React.Component {
         store.dispatch(loginHandler(user[0].value));
       }
     }
-    // this.props.history.push('/');
-    console.log(this.props.history);
 
     return(
       <div className="login-form-wrapper">

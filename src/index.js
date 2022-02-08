@@ -27,14 +27,14 @@ const store = Redux.createStore(Redux.combineReducers({
   loading,
   session,
   users,
-  questions
+  questions,
 }), Redux.applyMiddleware(ReduxThunk.default, logger));
 
 const ConnectedApp = connect((state) => ({
   loading: state.loading,
   session: state.session,
   users: state.users,
-  questions: state.questions
+  questions: state.questions,
 }))(App)
 
 ReactDOM.render(
