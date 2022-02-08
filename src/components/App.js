@@ -22,6 +22,10 @@ const ConnectedQuestion = connect((state) => ({
   questions: state.questions
 }))(Question);
 
+const ConnectedLeaders = connect((state) => ({
+  users: state.users,
+}))(Leaders);
+
 class App extends react.Component {
 
   componentDidMount () {
@@ -51,7 +55,7 @@ class App extends react.Component {
             <Route path="/" element={<Home store={this.props} />} />
             <Route exact path="/poll/:id" element={<Poll />} />
             <Route exact path="/question" element={<ConnectedQuestion />} />
-            <Route exact path="/leaders" element={<Leaders />} />
+            <Route exact path="/leaders" element={<ConnectedLeaders />} />
           </Routes>
         </div>
       </BrowserRouter>
