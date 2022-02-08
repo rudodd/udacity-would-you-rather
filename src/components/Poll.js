@@ -6,19 +6,9 @@ import { Link } from 'react-router-dom';
 // Import actions
 import answerHandler from '../actions/answer';
 
-const calculateVotes = (id, users)=> {
-  const optionOneVotes = Object.entries(users).filter((user)=> {
-    let matches = Object.entries(user[1].answers).filter((answer)=> {
-      return answer[0] === id && answer[1] === 'optionOne';
-    });
-    return matches.length ? matches : false;
-  }).length;
-  const optionTwoVotes = Object.entries(users).filter((user)=> {
-    let matches = Object.entries(user[1].answers).filter((answer)=> {
-      return answer[0] === id && answer[1] === 'optionTwo';
-    });
-    return matches.length ? matches : false;
-  }).length;
+const calculateVotes = (id, questions)=> {
+  const optionOneVotes = questions[id].optionOne.votes.length;
+  const optionTwoVotes = questions[id].optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
   const optionOnePerent = Math.round((optionOneVotes / totalVotes) * 100);
   const optionTwoPercent = Math.round((optionTwoVotes / totalVotes) * 100);
@@ -36,8 +26,8 @@ const calculateVotes = (id, users)=> {
   }
 }
 
-const getVoteData = (id, users, user)=> {
-  let votes = calculateVotes(id, users);
+const getVoteData = (id, user, questions)=> {
+  let votes = calculateVotes(id, questions);
   const optionOneVoteClassArray = ['poll-answer'];
   const optionTwoVoteClassArray = ['poll-answer'];
   if (user.answers[id] === 'optionOne') {
@@ -70,7 +60,6 @@ const getVoteData = (id, users, user)=> {
 class PollQuestion extends React.Component {
 
   render() {
-
     const { questions, users, id, session, dispatch } = this.props;
     const question = questions[id];
     const user = users[session.user];
@@ -86,7 +75,7 @@ class PollQuestion extends React.Component {
     }
 
     if (answered.length) {
-      const voteData = getVoteData(id, users, user);
+      const voteData = getVoteData(id, user, questions);
       return (
         <div className="poll-question">
           <h2>Results:</h2>
