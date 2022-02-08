@@ -1,0 +1,34 @@
+// Polls styles
+.poll-question {
+
+  .poll-question-detail {
+
+    .poll-answer {
+
+      &.user-choice {
+        position: relative;
+  
+        &::after {
+          content: 'Your Vote';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(50%, 50%);
+          border: solid 1px red;
+          border-radius: 50%;
+        }
+      }
+
+      .answer-guage-wrapper {
+        display: flex;
+
+        .answer-guage {
+          background: whitesmoke;
+        }
+      }
+    }
+
+    
+  }
+}

@@ -3,6 +3,67 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+const calculateVotes = (id, users)=> {
+  const optionOneVotes = Object.entries(users).filter((user)=> {
+    let matches = Object.entries(user[1].answers).filter((answer)=> {
+      return answer[0] === id && answer[1] === 'optionOne';
+    });
+    return matches.length ? matches : false;
+  }).length;
+  const optionTwoVotes = Object.entries(users).filter((user)=> {
+    let matches = Object.entries(user[1].answers).filter((answer)=> {
+      return answer[0] === id && answer[1] === 'optionTwo';
+    });
+    return matches.length ? matches : false;
+  }).length;
+  const totalVotes = optionOneVotes + optionTwoVotes;
+  const optionOnePerent = (optionOneVotes / totalVotes) * 100;
+  const optionTwoPercent = (optionTwoVotes / totalVotes) * 100;
+  return {
+    winner: optionOneVotes > optionTwoVotes ? 'optionOne' : 'optionTwo',
+    percents: {
+      optionOne: optionOnePerent,
+      optionTwo: optionTwoPercent,
+    },
+    counts: {
+      total: totalVotes,
+      optionOne: optionOneVotes,
+      optionTwo: optionTwoVotes,
+    }
+  }
+}
+
+const getVoteData = (id, users, user)=> {
+  let votes = calculateVotes(id, users);
+  const optionOneVoteClassArray = ['poll-answer'];
+  const optionTwoVoteClassArray = ['poll-answer'];
+  if (user.answers[id] === 'optionOne') {
+    optionOneVoteClassArray.push('user-choice');
+  } else {
+    optionTwoVoteClassArray.push('user-choice');
+  }
+  if (votes.winner === 'optionOne') {
+    optionOneVoteClassArray.push('winner');
+  } else {
+    optionTwoVoteClassArray.push('winner');
+  }
+  const optionOneClasses = optionOneVoteClassArray.length ? optionOneVoteClassArray.join(' ') : '';
+  const optionTwoClasses = optionTwoVoteClassArray.length ? optionTwoVoteClassArray.join(' ') : '';
+  return {
+    totalVotes: votes.counts.total,
+    optionOne: {
+      classes: optionOneClasses,
+      percent: `${votes.percents.optionOne}%`,
+      count: votes.counts.optionOne,
+    },
+    optionTwo: {
+      classes: optionTwoClasses,
+      percent: `${votes.percents.optionTwo}%`,
+      count: votes.counts.optionTwo,
+    }
+  }
+}
+
 class PollQuestion extends React.Component {
 
   render() {
@@ -15,11 +76,7 @@ class PollQuestion extends React.Component {
     });
 
     if (answered.length) {
-      let winningOption = 'optionTwo';
-      const optionOneVoteClass = user.answers[id] === 'optionOne' ? 'user-choice' : '';
-      const optionTwoVoteClass = user.answers[id] === 'optionTwo' ? 'user-choice' : '';
-      const optionOneClasses = winningOption === 'optionOne' ? optionOneVoteClass + ' ' + 'winner' : optionOneVoteClass;
-      const optionTwoClasses = winningOption === 'optionTwo' ? optionTwoVoteClass + ' ' + 'winner' : optionTwoVoteClass;
+      const voteData = getVoteData(id, users, user);
       return (
         <div className="poll-question">
           <h2>Results:</h2>
@@ -27,9 +84,29 @@ class PollQuestion extends React.Component {
           <div className="poll-question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
           <div className="poll-question-detail">
             <h4>Would you rather</h4>
-            <p className={optionOneClasses}>{question.optionOne.text}</p>
+            <div className={voteData.optionOne.classes}>
+              <p>{question.optionOne.text}</p>
+              <div className="answer-guage-wrapper">
+                <div className="answer-guage" style={{'width' : voteData.optionOne.percent}}>
+                  {voteData.optionOne.percent}
+                </div>
+              </div>
+              <div className="answer-count">
+                <p>{voteData.optionOne.count} out of {voteData.totalVotes} votes</p>
+              </div>
+            </div>
             <p>or</p>
-            <p className={optionTwoClasses}>{question.optionTwo.text}</p>
+            <div className={voteData.optionTwo.classes}>
+              <p>{question.optionTwo.text}</p>
+              <div className="answer-guage-wrapper">
+                <div className="answer-guage" style={{'width' : voteData.optionTwo.percent}}>
+                  {voteData.optionTwo.percent}
+                </div>
+              </div>
+              <div className="answer-count">
+                <p>{voteData.optionTwo.count} out of {voteData.totalVotes} votes</p>
+              </div>
+            </div>
             <Link to={`/poll/${question.id}`}>View Poll</Link>
           </div>
         </div>
