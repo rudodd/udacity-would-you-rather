@@ -40,6 +40,8 @@ $primary-font: 'Open Sans', sans-serif;
   border: 0;
   padding: 10px 20px;
   font-size: 1.15rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 //  - Universal styles
@@ -48,7 +50,11 @@ body {
   font-family: $primary-font;
   font-size: 14px;
   color: $black;
+  margin: 0;
+  padding: 0;
 }
 
+@import 'partials/header';
+@import 'partials/not_found';
 @import 'partials/login_form';
 @import 'partials/poll';

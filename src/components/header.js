@@ -24,15 +24,15 @@ class Header extends React.Component {
     // Create array of menu link objects to itterate over to create the navigation menu
     const menuLinks = [
       {
-        name: 'Home',
+        name: [<span class="material-icons">home</span>, 'Home'],
         href: '/',
       },
       {
-        name: 'New Question',
+        name: [<span class="material-icons">contact_support</span>, 'New Question'],
         href: '/add'
       },
       {
-        name: 'Leader Board',
+        name: [<span class="material-icons">emoji_events</span>, 'Leader Board'],
         href: '/leaderboard'
       }
     ];
@@ -40,14 +40,19 @@ class Header extends React.Component {
     return (
       <header>
         <div className="wrap">
+          <div className="logo-wrap">
+            <img src="/img/logo.svg" alt="Would you rather app" />
+          </div>
           <nav className="menu-wrap">
             <Menu links={menuLinks} />
           </nav>
-          <div className="user-info">
+          <div className="user-wrap">
             <p>Hello {user.name}</p>
             <img className="avatar" src={user.avatarURL} alt={user.name} />
           </div>
-          <button onClick={logOut}>Logout</button>
+          <div className="button-wrap">
+            <button onClick={logOut}><span class="material-icons">logout</span> Logout</button>
+          </div>
         </div>
       </header>
     )

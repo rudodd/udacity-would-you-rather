@@ -13,6 +13,9 @@
     background: $grey-lightest;
     text-align: center;
     border-bottom: solid 2px $grey;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 
     h1 {
       font-size: 1.5rem;

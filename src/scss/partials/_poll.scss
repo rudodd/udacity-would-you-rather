@@ -1,4 +1,4 @@
-// Polls styles
+// Poll / Question styles
 .poll-question {
 
   .poll-question-detail {
@@ -7,7 +7,7 @@
 
       &.user-choice {
         position: relative;
-  
+
         &::after {
           content: 'Your Vote';
           display: block;
@@ -29,6 +29,6 @@
       }
     }
 
-    
+
   }
 }

@@ -1,5 +1,6 @@
 // Import libraries
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * 404 Screen componenet **************************************************************
@@ -9,8 +10,10 @@ class NotFound extends React.Component {
   render() {
 
     return (
-      <div className="404-page">
-        <h1>404</h1>
+      <div className="error-page-wrapper">
+        <h1><span class="material-icons">error</span>Error 404</h1>
+        <p>The requested page could not be found.</p>
+        <Link to="/"><span class="material-icons">home</span> Home</Link>
       </div>
     )
   }
