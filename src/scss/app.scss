@@ -2,5 +2,53 @@
  * App Styles ************************************************
  */
 
- @import 'partials/login_form';
- @import 'partials/poll';
+// Universal styles, helper classes, and variables
+
+// - Colors
+$color-primary: #264653;
+$color-primary-light: #2a9d8f;
+$color-median: #e9c46a;
+$color-secondary-light: #f4a261;
+$color-secondary: #e76f51;
+$grey-lightest: #f8f9fa;
+$grey-light: #e9ecef;
+$grey: #ced4da;
+$grey-dark: #495057;
+$grey-darkest: #343a40;
+$black: #212529;
+$white: #fff;
+
+// - Fonts
+$primary-font: 'Open Sans', sans-serif;
+
+// - Helper classes
+.global-width {
+  width: 90%;
+  max-width: 600px;
+  margin: auto auto;
+}
+
+.corner-borders {
+  border: solid 2px $grey;
+  border-radius: 5px;
+}
+
+.button {
+  background: $color-secondary;
+  color: $white;
+  border-radius: 5px;
+  border: 0;
+  padding: 10px 20px;
+  font-size: 1.15rem;
+}
+
+//  - Universal styles
+html,
+body {
+  font-family: $primary-font;
+  font-size: 14px;
+  color: $black;
+}
+
+@import 'partials/login_form';
+@import 'partials/poll';

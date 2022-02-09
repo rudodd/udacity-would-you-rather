@@ -1,13 +1,68 @@
 /**
  * App Styles ************************************************
  */
-.login-form-wrapper .login-form .user-select {
+.global-width, .login-form-wrapper {
+  width: 90%;
+  max-width: 600px;
+  margin: auto auto; }
+
+.corner-borders, .login-form-wrapper {
+  border: solid 2px #ced4da;
+  border-radius: 5px; }
+
+.button, .login-form-wrapper .login-form button {
+  background: #e76f51;
+  color: #fff;
+  border-radius: 5px;
+  border: 0;
+  padding: 10px 20px;
+  font-size: 1.15rem; }
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: #212529; }
+
+.login-form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-items: center; }
-  .login-form-wrapper .login-form .user-select img {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%; }
+  flex-direction: column; }
+  .login-form-wrapper .login-header {
+    background: #f8f9fa;
+    text-align: center;
+    border-bottom: solid 2px #ced4da; }
+    .login-form-wrapper .login-header h1 {
+      font-size: 1.5rem; }
+  .login-form-wrapper .login-logo {
+    padding: 35px 35px 0;
+    text-align: center; }
+    .login-form-wrapper .login-logo img {
+      width: auto;
+      height: 100px; }
+  .login-form-wrapper .login-form {
+    padding: 25px; }
+    .login-form-wrapper .login-form h2 {
+      text-align: center;
+      color: #264653; }
+    .login-form-wrapper .login-form .user-select {
+      display: flex;
+      align-items: center; }
+      .login-form-wrapper .login-form .user-select img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%; }
+      .login-form-wrapper .login-form .user-select p {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-left: 10px; }
+    .login-form-wrapper .login-form button {
+      width: 100%;
+      margin-top: 15px; }
 
 .poll-question .poll-question-detail .poll-answer.user-choice {
   position: relative; }
@@ -26,13 +81,45 @@
   .poll-question .poll-question-detail .poll-answer .answer-guage-wrapper .answer-guage {
     background: whitesmoke; }
 
-.login-form-wrapper .login-form .user-select {
+.login-form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-items: center; }
-  .login-form-wrapper .login-form .user-select img {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%; }
+  flex-direction: column; }
+  .login-form-wrapper .login-header {
+    background: #f8f9fa;
+    text-align: center;
+    border-bottom: solid 2px #ced4da; }
+    .login-form-wrapper .login-header h1 {
+      font-size: 1.5rem; }
+  .login-form-wrapper .login-logo {
+    padding: 35px 35px 0;
+    text-align: center; }
+    .login-form-wrapper .login-logo img {
+      width: auto;
+      height: 100px; }
+  .login-form-wrapper .login-form {
+    padding: 25px; }
+    .login-form-wrapper .login-form h2 {
+      text-align: center;
+      color: #264653; }
+    .login-form-wrapper .login-form .user-select {
+      display: flex;
+      align-items: center; }
+      .login-form-wrapper .login-form .user-select img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%; }
+      .login-form-wrapper .login-form .user-select p {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-left: 10px; }
+    .login-form-wrapper .login-form button {
+      width: 100%;
+      margin-top: 15px; }
 
 .poll-question .poll-question-detail .poll-answer.user-choice {
   position: relative; }

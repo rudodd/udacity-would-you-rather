@@ -64,11 +64,11 @@ class LoginForm extends React.Component {
     return(
       <div className="login-form-wrapper">
         <div className="login-header">
-          <h1>Welcome to the would you rather App!</h1>
+          <h1>Welcome to the would you rather app!</h1>
           <p>Please sign in to continue</p>
         </div>
         <div className="login-logo">
-          {/* Logo goes here */}
+          <img src="/img/logo.svg" alt="Would you rather app" />
         </div>
         <form className="login-form">
           <h2>Login</h2>
