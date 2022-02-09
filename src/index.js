@@ -1,3 +1,4 @@
+// Import libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Redux from 'redux';
@@ -17,6 +18,7 @@ import App from './components/App';
 import logger from './middleware/logger';
 import validate from './middleware/validate';
 
+// Create the redux store, combining reducers and passing in middleware
 const store = Redux.createStore(Redux.combineReducers({
   loading,
   session,
@@ -24,6 +26,7 @@ const store = Redux.createStore(Redux.combineReducers({
   questions,
 }), Redux.applyMiddleware(ReduxThunk.default, logger, validate));
 
+// Connect the main app component to the redux store
 const ConnectedApp = connect((state) => ({
   loading: state.loading,
   session: state.session,

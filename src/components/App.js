@@ -3,7 +3,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-
 // Import Components, etc...
 import '../dist/css/app.css';
 import LoginForm from './LoginForm'
@@ -18,6 +17,7 @@ import NotFound from './NotFound';
 import getDataHandler from '../actions/data';
 
 // Connect components to the the redux state
+//  - Poll component conected in poll component file for use with useParams()
 const ConnectedQuestion = connect((state) => ({
   session: state.session,
   users: state.users,
