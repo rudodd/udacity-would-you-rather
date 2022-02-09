@@ -1,3 +1,4 @@
+// Middleware to log redux dispatches in the console
 const logger = (store) => (next) => (action) => {
   console.group(action.type)
     console.log('The action: ', action)
