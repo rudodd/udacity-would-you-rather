@@ -11,7 +11,7 @@ function LoginButton(props) {
   let navigate = useNavigate();
   const loginSubmit = (e)=> {
     e.preventDefault();
-    let user = props.state.user[0].value;
+    let user = typeof props.state.user[0] != 'undefined' ? props.state.user[0].value : '';
     if (typeof user != 'undefined' && user.length) {
       props.store.dispatch(loginHandler(user));
 

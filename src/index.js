@@ -16,7 +16,6 @@ import App from './components/App';
 
 // Import middleware
 import logger from './middleware/logger';
-import validate from './middleware/validate';
 
 // Create the redux store, combining reducers and passing in middleware
 const store = Redux.createStore(Redux.combineReducers({
@@ -24,7 +23,7 @@ const store = Redux.createStore(Redux.combineReducers({
   session,
   users,
   questions,
-}), Redux.applyMiddleware(ReduxThunk.default, logger, validate));
+}), Redux.applyMiddleware(ReduxThunk.default, logger));
 
 // Connect the main app component to the redux store
 const ConnectedApp = connect((state) => ({

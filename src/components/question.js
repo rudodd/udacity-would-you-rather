@@ -6,6 +6,17 @@ import { Navigate } from 'react-router-dom';
 import questionHandler from '../actions/question';
 
 /**
+ * Error message componenet **************************************************************
+ */
+function ErrorMessage() {
+  return (
+    <div className="error-message">
+      <p><span className="material-icons">report</span> Question creation failed.  One or more of the option inouts is empty.  Please fill out both options and try again.</p>
+    </div>
+  )
+}
+
+/**
  * Create question componenet **************************************************************
  */
 class Question extends react.Component {
@@ -13,6 +24,7 @@ class Question extends react.Component {
   // Set display state for use in deciding whether to display the form or redirect home
   state = {
     questionCreated: false,
+    error: false,
   }
 
   render() {
@@ -24,14 +36,16 @@ class Question extends react.Component {
       const optionOneText = e.target[0].value;
       const optionTwoText = e.target[1].value;
       const author = session.user;
-      dispatch(questionHandler({ optionOneText, optionTwoText, author }))
-        .then(()=> {
-          if (optionOneText.length && optionTwoText.length) {
-            this.setState({
-              questionCreated: true
-            })
-          }
-        });
+      if (optionOneText.length && optionTwoText.length) {
+        dispatch(questionHandler({ optionOneText, optionTwoText, author }))
+        this.setState({
+          questionCreated: true
+        })
+      } else {
+        this.setState({
+          error: true,
+        })
+      }
     }
 
     // If the question was created redirect to the home screen
@@ -49,6 +63,7 @@ class Question extends react.Component {
         <div className="new-question-details">
           <p>Complete the question</p>
           <h2>Would you rather...</h2>
+          {this.state.error ? <ErrorMessage /> : null}
           <form className="new-question-form" onSubmit={questionSubmit}>
             <div className="input-wrapper">
               <label className="sr-only">Option One Text</label>

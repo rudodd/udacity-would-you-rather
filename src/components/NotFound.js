@@ -11,9 +11,9 @@ class NotFound extends React.Component {
 
     return (
       <div className="error-page-wrapper">
-        <h1><span class="material-icons">error</span>Error 404</h1>
+        <h1><span className="material-icons">error</span>Error 404</h1>
         <p>The requested page could not be found.</p>
-        <Link to="/"><span class="material-icons">home</span> Home</Link>
+        <Link to="/"><span className="material-icons">home</span> Home</Link>
       </div>
     )
   }

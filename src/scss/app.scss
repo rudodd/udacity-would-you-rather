@@ -18,6 +18,9 @@ $grey-dark: #495057;
 $grey-darkest: #343a40;
 $black: #212529;
 $white: #fff;
+$error-dark: #7f0000;
+$error-light: #ffecec;
+
 
 // - Fonts
 $primary-font: 'Open Sans', sans-serif;
@@ -50,6 +53,19 @@ $primary-font: 'Open Sans', sans-serif;
   border: solid 2px $grey-light;
 }
 
+// - Accessibility helpers
+// -- Screen readers only
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
 //  - Universal styles
 html,
 body {
@@ -60,8 +76,10 @@ body {
   padding: 0;
 }
 
+// Import component partials
 @import 'partials/header';
 @import 'partials/not_found';
 @import 'partials/login_form';
 @import 'partials/home';
 @import 'partials/question';
+@import 'partials/new_question';

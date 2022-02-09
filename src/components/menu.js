@@ -11,7 +11,7 @@ class MenuLink extends React.Component {
 
     return (
       <li className="menu-item">
-        <Link to={this.props.link.href}>{this.props.link.name}</Link>
+        <Link to={this.props.link.href}><span className="material-icons">{this.props.link.icon}</span>{this.props.link.name}</Link>
       </li>
     )
   }
