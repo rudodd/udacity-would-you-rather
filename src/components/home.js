@@ -12,11 +12,11 @@ class HomeQuestion extends React.Component {
     const author = store.users[question.author];
 
     return (
-      <div className="home-question">
-        <div className="home-question-title"><h2>{author.name} asks:</h2></div>
-        <div className="home-question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
-        <div className="home-question-detail">
-          <h3>Would you rather</h3>
+      <div className="question">
+        <div className="question-title"><h2>{author.name} asks:</h2></div>
+        <div className="question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
+        <div className="question-detail">
+          <h3>Would you rather...</h3>
           <p>{question.optionOne.text}</p>
           <p>or</p>
           <p>{question.optionTwo.text}</p>
@@ -72,8 +72,8 @@ class Home extends React.Component {
     return(
       <div className="home-wrapper">
         <div className="home-tabs">
-          <button onClick={()=> toggleQuestions('unanswered')}>Unanswered Questions</button>
-          <button onClick={()=> toggleQuestions('answered')}>Answered Questions</button>
+          <button className={this.state.tab === 'unanswered' ? 'active' : 'inactive'} onClick={()=> toggleQuestions('unanswered')}>Unanswered Questions</button>
+          <button className={this.state.tab === 'answered' ? 'active' : 'inactive'} onClick={()=> toggleQuestions('answered')}>Answered Questions</button>
         </div>
         {this.state.tab != 'answered'
           ? <HomeQuestionContainer store={store} questions={unAnsweredQuestions} />

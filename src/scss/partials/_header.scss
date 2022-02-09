@@ -1,5 +1,6 @@
 // Header styles
 header {
+  margin-bottom: 25px;
 
   .wrap {
     width: calc(100% - 20px); // Calc to account for the padding
@@ -75,8 +76,7 @@ header {
       img {
         width: auto;
         height: 40px;
-        border-radius: 50%;
-        border: solid 3px $grey;
+        @extend .avatar;
       }
     }
 

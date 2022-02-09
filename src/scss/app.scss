@@ -7,10 +7,11 @@
 // - Colors
 $color-primary: #264653;
 $color-primary-light: #2a9d8f;
+$color-primary-lightest: #cef1ed;
 $color-median: #e9c46a;
 $color-secondary-light: #f4a261;
 $color-secondary: #e76f51;
-$grey-lightest: #f8f9fa;
+$grey-lightest: #f4f6f7;
 $grey-light: #e9ecef;
 $grey: #ced4da;
 $grey-dark: #495057;
@@ -44,6 +45,11 @@ $primary-font: 'Open Sans', sans-serif;
   cursor: pointer;
 }
 
+.avatar {
+  border-radius: 50%;
+  border: solid 2px $grey-light;
+}
+
 //  - Universal styles
 html,
 body {
@@ -57,4 +63,5 @@ body {
 @import 'partials/header';
 @import 'partials/not_found';
 @import 'partials/login_form';
-@import 'partials/poll';
+@import 'partials/home';
+@import 'partials/question';

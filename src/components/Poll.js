@@ -17,8 +17,14 @@ const calculateVotes = (id, questions)=> {
   const totalVotes = optionOneVotes + optionTwoVotes;
   const optionOnePerent = Math.round((optionOneVotes / totalVotes) * 100);
   const optionTwoPercent = Math.round((optionTwoVotes / totalVotes) * 100);
+  let winningOption = null;
+  if (optionOneVotes > optionTwoVotes) {
+    winningOption = 'optionOne';
+  } else if (optionOneVotes < optionTwoVotes) {
+    winningOption = 'optionTwo';
+  }
   return {
-    winner: optionOneVotes > optionTwoVotes ? 'optionOne' : 'optionTwo',
+    winner: winningOption,
     percents: {
       optionOne: optionOnePerent,
       optionTwo: optionTwoPercent,
@@ -34,8 +40,8 @@ const calculateVotes = (id, questions)=> {
 // Function to get results of votes and create an object to use rendering
 const getVoteData = (id, user, questions)=> {
   let votes = calculateVotes(id, questions);
-  const optionOneVoteClassArray = ['poll-answer'];
-  const optionTwoVoteClassArray = ['poll-answer'];
+  const optionOneVoteClassArray = ['question-answer'];
+  const optionTwoVoteClassArray = ['question-answer'];
   if (user.answers[id] === 'optionOne') {
     optionOneVoteClassArray.push('user-choice');
   } else {
@@ -43,7 +49,7 @@ const getVoteData = (id, user, questions)=> {
   }
   if (votes.winner === 'optionOne') {
     optionOneVoteClassArray.push('winner');
-  } else {
+  } else if (votes.winner === 'optionTwo') {
     optionTwoVoteClassArray.push('winner');
   }
   const optionOneClasses = optionOneVoteClassArray.join(' ');
@@ -95,29 +101,27 @@ class PollQuestion extends React.Component {
     if (answered) {
       const voteData = getVoteData(id, user, questions);
       return (
-        <div className="poll-question">
-          <h2>Results:</h2>
-          <div className="poll-question-title"><h3>{author.name} asks:</h3></div>
-          <div className="poll-question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
-          <div className="poll-question-detail">
-            <h4>Would you rather</h4>
+        <div className="question">
+          <div className="question-title"><h3>{author.name} asks:</h3></div>
+          <div className="question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
+          <div className="question-detail">
+            <h4>Results:</h4>
             <div className={voteData.optionOne.classes}>
-              <p>{question.optionOne.text}</p>
+              <p>You would rather {question.optionOne.text}</p>
               <div className="answer-guage-wrapper">
                 <div className="answer-guage" style={{'width' : voteData.optionOne.percent}}>
-                  {voteData.optionOne.percent}
+                  <p>{voteData.optionOne.percent}</p>
                 </div>
               </div>
               <div className="answer-count">
                 <p>{voteData.optionOne.count} out of {voteData.totalVotes} votes</p>
               </div>
             </div>
-            <p>or</p>
             <div className={voteData.optionTwo.classes}>
-              <p>{question.optionTwo.text}</p>
+              <p>You would rather {question.optionTwo.text}</p>
               <div className="answer-guage-wrapper">
                 <div className="answer-guage" style={{'width' : voteData.optionTwo.percent}}>
-                  {voteData.optionTwo.percent}
+                  <p>{voteData.optionTwo.percent}</p>
                 </div>
               </div>
               <div className="answer-count">
@@ -131,12 +135,12 @@ class PollQuestion extends React.Component {
 
     // If the question has not been answered return the form to answer the poll question
     return (
-      <div className="poll-question">
-        <div className="poll-question-title"><h2>{author.name} asks:</h2></div>
-        <div className="poll-question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
-        <div className="poll-question-detail">
-          <h3>Would you rather</h3>
-          <form className="poll-form" onSubmit={answerSubmit}>
+      <div className="question">
+        <div className="question-title"><h2>{author.name} asks:</h2></div>
+        <div className="question-avatar"><img src={author.avatarURL} alt={author.name} /></div>
+        <div className="question-detail">
+          <h3>Would you rather...</h3>
+          <form className="question-form" onSubmit={answerSubmit}>
             <div className="input-wrapper">
               <input value="optionOne" type="radio" name="answer" id="optionOne" />
               <label htmlFor="optionOne">{question.optionOne.text}</label>
@@ -167,7 +171,7 @@ function Poll() {
   const { id } = useParams();
 
   return (
-    <div className="poll-wrapper">
+    <div className="poll-question-wrapper">
       <ConnectedPollQuestion id={id} />
     </div>
   )

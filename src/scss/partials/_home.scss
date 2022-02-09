@@ -1,0 +1,42 @@
+// Home page styles
+.home-wrapper {
+  @extend .global-width;
+  @extend .corner-borders;
+
+  .home-tabs {
+    width: 100%;
+    display: flex;
+    border-bottom: solid 2px $grey;
+
+    button {
+      width: 50%;
+      border: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 10px;
+      cursor: pointer;
+
+      &.inactive {
+        color: $grey-darkest;
+        background: none;
+      }
+
+      &.active {
+        color: $color-secondary;
+        background: $grey-light;
+      }
+
+      &:nth-of-type(1) {
+        border-top-left-radius: 5px;
+      }
+
+      &:nth-of-type(2){
+        border-top-right-radius: 5px;
+      }
+    }
+  }
+
+  .home-question-wrapper {
+    padding: 25px;
+  }
+}
