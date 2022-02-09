@@ -1,6 +1,10 @@
+// Import libraries
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * Home screen individual question componenet **************************************************************
+ */
 class HomeQuestion extends React.Component {
 
   render() {
@@ -23,6 +27,9 @@ class HomeQuestion extends React.Component {
   }
 }
 
+/**
+ * Home screen questions componenet **************************************************************
+ */
 class HomeQuestionContainer extends React.Component {
 
   render() {
@@ -35,34 +42,32 @@ class HomeQuestionContainer extends React.Component {
   }
 }
 
+/**
+ * Home screen main componenet **************************************************************
+ */
 class Home extends React.Component {
 
+  // Set initial tab state for showing answer or unanswered questions
   state = {
     tab: 'unanswered'
   }
 
   render() {
-
-    const toggleQuestions = (tab)=> {
-      this.setState(
-        {
-          tab: tab
-        }
-      )
-    }
-
     const { store } = this.props;
-    let answeredQuestions = Object.entries(store.users[store.session.user].answers).map((answer)=> {
-      const answerId = answer[0];
-      return store.questions[answerId];
-    });
+
+    // Create array of answered questions
+    let answeredQuestions = Object.entries(store.users[store.session.user].answers).map((answer)=> store.questions[answer[0]]);
+
+    // Create array of unanswered questions
     let unAnsweredQuestions = Object.entries(store.questions).filter((question)=> {
-      const questionId = question[0];
       let matches = Object.entries(store.users[store.session.user].answers).filter((answer)=> {
-        return questionId === answer[0];
+        return question[0] === answer[0];
       });
       return !matches.length;
     }).map((question)=> question[1]);
+
+    // Method to toggle the displayed tab for answered and unanswered questions
+    const toggleQuestions = (tab)=> { this.setState({tab: tab}) }
 
     return(
       <div className="home-wrapper">

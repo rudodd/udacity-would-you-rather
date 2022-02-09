@@ -1,3 +1,4 @@
+// Import libraries
 import React from 'react';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 // Import actions
 import loginHandler from '../actions/login';
 
+// Login button component  - seperated from the form to allow for the use of useNavigate().  Redirect is currently commented out to align with project rubric.
 function LoginButton(props) {
   let navigate = useNavigate();
   const loginSubmit = (e)=> {
@@ -12,7 +14,9 @@ function LoginButton(props) {
     let user = props.state.user[0].value;
     if (typeof user != 'undefined' && user.length) {
       props.store.dispatch(loginHandler(user));
-      navigate('/');
+
+      // Redirect is currently disabled - remove the comment around it to redirect to the home page after login
+      // navigate('/');
     }
   }
   return (
@@ -20,15 +24,22 @@ function LoginButton(props) {
   )
 }
 
+/**
+ * Login form componenet **************************************************************
+ */
 class LoginForm extends React.Component {
 
+  // Set initial user input state that gets passed to the login form to empty
   state = {
     user: ''
   }
 
   render() {
+
+    // Get store from redux via connected component status
     const { store } = this.props;
 
+    // Set options for the react-select form input
     const selectOptions = [];
     for (let user in store.users) {
       let optionObject = {
@@ -41,6 +52,7 @@ class LoginForm extends React.Component {
       selectOptions.push(optionObject);
     };
 
+    // Change the user input state that gets passed to the login form - wrapped in setTimeout() to allow for the value to update before grabbing it on change
     const handleSelectChange = ()=> {
       setTimeout(()=> {
         this.setState({

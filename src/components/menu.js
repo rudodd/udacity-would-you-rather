@@ -1,7 +1,11 @@
-import react from 'react';
+// Import libraries
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-class MenuLink extends react.Component {
+/**
+ * Navigation menu individual link componenet **************************************************************
+ */
+class MenuLink extends React.Component {
 
   render() {
 
@@ -13,7 +17,10 @@ class MenuLink extends react.Component {
   }
 };
 
-class Menu extends react.Component {
+/**
+ * Navigation menu componenet **************************************************************
+ */
+class Menu extends React.Component {
 
 
   render() {

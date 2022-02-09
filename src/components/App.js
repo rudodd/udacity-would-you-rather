@@ -1,6 +1,6 @@
 // Import libraries
-import react from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -17,6 +17,7 @@ import NotFound from './NotFound';
 // Import actions
 import getDataHandler from '../actions/data';
 
+// Connect components to the the redux state
 const ConnectedQuestion = connect((state) => ({
   session: state.session,
   users: state.users,
@@ -27,26 +28,28 @@ const ConnectedLeaders = connect((state) => ({
   users: state.users,
 }))(Leaders);
 
-class App extends react.Component {
+/**
+ * Main app componenet **************************************************************
+ */
+class App extends React.Component {
 
+  // Get initial data when component mounts
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(getDataHandler())
-    .then(()=> {
-      this.setState({
-        redirect: this.props.sessionloggedIn && window.location.pathname != '/' ? false : true,
-      })
-    })
   }
 
   render() {
 
+    // If we don't have initial data yet, show a loading icon
     if (this.props.loading) {
       return (
         <h1>Loading...</h1>
       )
     }
 
+    // If not logged in show the login form component
+    //  - wrapped in the <BrowserRouter> component to allow for the use of useNavigation for redirect after logging in
     if (!this.props.session.loggedIn) {
       return (
         <BrowserRouter>

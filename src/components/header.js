@@ -1,20 +1,27 @@
-import react from 'react';
+// Import libraries
+import React from 'react';
 import Menu from './Menu';
 
 // Import actions
 import loginHandler from '../actions/login';
 
-class Header extends react.Component {
+
+/**
+ * Universal header componenet **************************************************************
+ */
+class Header extends React.Component {
 
   render() {
-
-    const store = this.props.store;
+    const { store } = this.props;
     const sessionUser = store.session.user;
-    const user = this.props.store.users[sessionUser];
+    const user = store.users[sessionUser];
+
+    // Log out function - this simply dispatches the loginHandler() without passing parameters which logs the user out
     const logOut = ()=> {
-      this.props.store.dispatch(loginHandler());
+      store.dispatch(loginHandler());
     }
 
+    // Create array of menu link objects to itterate over to create the navigation menu
     const menuLinks = [
       {
         name: 'Home',

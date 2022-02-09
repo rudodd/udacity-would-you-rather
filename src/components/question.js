@@ -1,11 +1,16 @@
+// Import libraries
 import react from 'react';
 import { Navigate } from 'react-router-dom';
 
 // Import actions
 import questionHandler from '../actions/question';
 
+/**
+ * Create question componenet **************************************************************
+ */
 class Question extends react.Component {
 
+  // Set display state for use in deciding whether to display the form or redirect home
   state = {
     questionCreated: false,
   }
@@ -13,6 +18,7 @@ class Question extends react.Component {
   render() {
     const { session, dispatch } = this.props;
 
+    // Method to dispatch the questionHandler on form submit
     const questionSubmit = (e)=> {
       e.preventDefault();
       const optionOneText = e.target[0].value;
@@ -28,6 +34,7 @@ class Question extends react.Component {
         });
     }
 
+    // If the question was created redirect to the home screen
     if (this.state.questionCreated) {
       return (
         <Navigate to="/" />

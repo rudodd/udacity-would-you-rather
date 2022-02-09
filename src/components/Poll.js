@@ -1,7 +1,7 @@
+// Import libraries
 import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 // Import custom components
 import NotFound from './NotFound';
@@ -9,7 +9,9 @@ import NotFound from './NotFound';
 // Import actions
 import answerHandler from '../actions/answer';
 
-const calculateVotes = (id, users, questions)=> {
+
+// Function to count and calculate votes and return a results object to be analyzed
+const calculateVotes = (id, questions)=> {
   const optionOneVotes = questions[id].optionOne.votes.length;
   const optionTwoVotes = questions[id].optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
@@ -29,8 +31,9 @@ const calculateVotes = (id, users, questions)=> {
   }
 }
 
-const getVoteData = (id, users, user, questions)=> {
-  let votes = calculateVotes(id, users, questions);
+// Function to get results of votes and create an object to use rendering
+const getVoteData = (id, user, questions)=> {
+  let votes = calculateVotes(id, questions);
   const optionOneVoteClassArray = ['poll-answer'];
   const optionTwoVoteClassArray = ['poll-answer'];
   if (user.answers[id] === 'optionOne') {
@@ -60,32 +63,37 @@ const getVoteData = (id, users, user, questions)=> {
   }
 }
 
+/**
+ * Poll question componenet **************************************************************
+ */
 class PollQuestion extends React.Component {
 
   render() {
     const { questions, users, id, session, dispatch } = this.props;
 
+    // Display 404 page if the poll question doesn't exist
     if (typeof questions[id] === 'undefined') {
       return (
         <NotFound />
       )
     }
 
+    // Else if the poll question does exist, determine if it has been answered by the current user
     const question = questions[id];
     const user = users[session.user];
     const author = users[question.author];
-    const answered = Object.entries(user.answers).filter((answer)=> {
-      return id === answer[0];
-    });
+    const answered = Object.entries(user.answers).filter((answer)=> id === answer[0]).length ? true : false;
 
+    // Method to dispatch the answerHandler when a question is answered
     const answerSubmit = (e)=> {
       e.preventDefault();
       const answer = e.target[0].checked ? 'optionOne' : 'optionTwo';
       dispatch(answerHandler(user.id, id, answer));
     }
 
-    if (answered.length) {
-      const voteData = getVoteData(id, users, user, questions);
+    // If the poll question has been answered return the results
+    if (answered) {
+      const voteData = getVoteData(id, user, questions);
       return (
         <div className="poll-question">
           <h2>Results:</h2>
@@ -121,6 +129,7 @@ class PollQuestion extends React.Component {
       );
     }
 
+    // If the question has not been answered return the form to answer the poll question
     return (
       <div className="poll-question">
         <div className="poll-question-title"><h2>{author.name} asks:</h2></div>
@@ -146,12 +155,14 @@ class PollQuestion extends React.Component {
   }
 }
 
+// Connect the poll question component to the redux store
 const ConnectedPollQuestion = connect((state) => ({
   session: state.session,
   users: state.users,
   questions: state.questions
 }))(PollQuestion)
 
+// Use a functional component to pass the useParams() to the connected component
 function Poll() {
   const { id } = useParams();
 

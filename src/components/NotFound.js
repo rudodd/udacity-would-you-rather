@@ -1,5 +1,9 @@
+// Import libraries
 import React from 'react';
 
+/**
+ * 404 Screen componenet **************************************************************
+ */
 class NotFound extends React.Component {
 
   render() {

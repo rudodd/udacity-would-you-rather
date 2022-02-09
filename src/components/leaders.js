@@ -1,5 +1,9 @@
+// Import libraries
 import React from 'react';
 
+/**
+ * Leaderboard individual leader component **************************************************************
+ */
 class Leader extends React.Component {
 
   render() {
@@ -31,10 +35,15 @@ class Leader extends React.Component {
   }
 }
 
+/**
+ * Leaderboard componenet **************************************************************
+ */
 class Leaders extends React.Component {
 
   render() {
     const { users } = this.props;
+
+    // Create sorted array of users and question / answer counts
     let usersArray = [];
     for (let user in users) {
       let userArray = [];
