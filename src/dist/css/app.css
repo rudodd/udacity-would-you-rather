@@ -1,12 +1,12 @@
 /**
  * App Styles ************************************************
  */
-.global-width, .error-page-wrapper, .login-form-wrapper, .home-wrapper, .new-question-wrapper, .poll-question-wrapper {
+.global-width, .error-page-wrapper, .login-form-wrapper, .home-wrapper, .new-question-wrapper, .leader-board-wrapper, .poll-question-wrapper {
   width: 90%;
   max-width: 600px;
   margin: auto auto; }
 
-.corner-borders, .login-form-wrapper, .home-wrapper, .question, .question .question-answer, .new-question-wrapper {
+.corner-borders, .login-form-wrapper, .home-wrapper, .question, .question .question-answer, .new-question-wrapper, .leader-board-wrapper .leader-board-item, .leader-board-wrapper .leader-board-item .user-score-wrapper .user-score {
   border: solid 2px #ced4da;
   border-radius: 5px; }
 
@@ -22,7 +22,7 @@
   text-decoration: none;
   cursor: pointer; }
 
-.avatar, header .wrap .user-wrap img, .login-form-wrapper .login-form .user-select img, .question .question-avatar img {
+.avatar, header .wrap .user-wrap img, .login-form-wrapper .login-form .user-select img, .question .question-avatar img, .leader-board-wrapper .leader-board-item .user-image img {
   border-radius: 50%;
   border: solid 2px #e9ecef; }
 
@@ -105,7 +105,7 @@ header {
     header .wrap .button-wrap {
       width: auto;
       flex-shrink: 0;
-      border-left: solid 1px #e9ecef;
+      border-left: solid 2px #f4f6f7;
       padding-left: 15px; }
       header .wrap .button-wrap button {
         background: #264653;
@@ -202,6 +202,9 @@ header {
 
 .home-wrapper .home-question-wrapper {
   padding: 25px; }
+  .home-wrapper .home-question-wrapper .no-questions {
+    margin: 0;
+    font-weight: 600; }
 
 .question {
   display: flex;
@@ -455,7 +458,7 @@ header {
     header .wrap .button-wrap {
       width: auto;
       flex-shrink: 0;
-      border-left: solid 1px #e9ecef;
+      border-left: solid 2px #f4f6f7;
       padding-left: 15px; }
       header .wrap .button-wrap button {
         background: #264653;
@@ -490,6 +493,83 @@ header {
 
 .home-wrapper .home-question-wrapper {
   padding: 25px; }
+  .home-wrapper .home-question-wrapper .no-questions {
+    margin: 0;
+    font-weight: 600; }
+
+.leader-board-wrapper .leader-board-item {
+  position: relative;
+  display: flex;
+  margin-top: 25px; }
+  .leader-board-wrapper .leader-board-item:nth-of-type(1) {
+    margin-top: 0; }
+    .leader-board-wrapper .leader-board-item:nth-of-type(1) .trophy-icon span {
+      color: #AF9500; }
+  .leader-board-wrapper .leader-board-item:nth-of-type(2) .trophy-icon span {
+    color: #aaaaaa; }
+  .leader-board-wrapper .leader-board-item:nth-of-type(3) .trophy-icon span {
+    color: #AD8A56; }
+  .leader-board-wrapper .leader-board-item .trophy-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+    background-image: -webkit-linear-gradient(-45deg, #f4f6f7 35%, rgba(0, 0, 0, 0) 35%); }
+  .leader-board-wrapper .leader-board-item .user-image {
+    width: calc(30% - 50px);
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center; }
+    .leader-board-wrapper .leader-board-item .user-image img {
+      width: auto;
+      height: 125px; }
+  .leader-board-wrapper .leader-board-item .user-details {
+    width: calc(40% - 50px);
+    margin: 25px 0;
+    padding: 0 25px;
+    border-left: solid 2px #f4f6f7; }
+    .leader-board-wrapper .leader-board-item .user-details h2,
+    .leader-board-wrapper .leader-board-item .user-details h3,
+    .leader-board-wrapper .leader-board-item .user-details h4 {
+      margin: 0 0 15px;
+      font-size: 1.25rem; }
+    .leader-board-wrapper .leader-board-item .user-details p {
+      font-size: 1.1rem;
+      border-top: solid 2px #f4f6f7;
+      margin: 0;
+      padding: 20px 0; }
+      .leader-board-wrapper .leader-board-item .user-details p:first-of-type {
+        border-top: 0; }
+      .leader-board-wrapper .leader-board-item .user-details p span {
+        float: right; }
+  .leader-board-wrapper .leader-board-item .user-score-wrapper {
+    width: calc(30% - 50px);
+    padding: 25px;
+    text-align: center; }
+    .leader-board-wrapper .leader-board-item .user-score-wrapper .user-score .score-title {
+      background: #f4f6f7;
+      padding: 10px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px; }
+      .leader-board-wrapper .leader-board-item .user-score-wrapper .user-score .score-title h3 {
+        margin: 0; }
+    .leader-board-wrapper .leader-board-item .user-score-wrapper .user-score .score {
+      height: 50px;
+      width: 50px;
+      background: #2a9d8f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      margin: 25px auto; }
+      .leader-board-wrapper .leader-board-item .user-score-wrapper .user-score .score p {
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: 700;
+        margin: auto; }
 
 .login-form-wrapper {
   position: absolute;

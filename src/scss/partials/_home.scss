@@ -38,5 +38,10 @@
 
   .home-question-wrapper {
     padding: 25px;
+
+    .no-questions {
+      margin: 0;
+      font-weight: 600;
+    }
   }
 }

@@ -12,13 +12,16 @@ class Leader extends React.Component {
 
     return (
       <div className="leader-board-item">
+        <div className="trophy-icon">
+          <span className="material-icons">emoji_events</span>
+        </div>
         <div className="user-image">
           <img src={users[id].avatarURL} alt={users[id].name} />
         </div>
         <div className="user-details">
           <h2>{users[id].name}</h2>
-          <p>Answered questions: {user['answerCount']}</p>
-          <p>Answered questions: {user['questionCount']}</p>
+          <p>Answered questions: <span>{user['answerCount']}</span></p>
+          <p>Answered questions: <span>{user['questionCount']}</span></p>
         </div>
         <div className="user-score-wrapper">
           <div className="user-score">

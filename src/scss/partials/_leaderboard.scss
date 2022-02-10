@@ -1,0 +1,125 @@
+// Leaderboard screen styles
+.leader-board-wrapper {
+  @extend .global-width;
+
+  .leader-board-item {
+    @extend .corner-borders;
+    position: relative;
+    display: flex;
+    margin-top: 25px;
+
+    &:nth-of-type(1) {
+      margin-top: 0;
+
+      .trophy-icon span {
+        color: #AF9500;
+      }
+    }
+
+    &:nth-of-type(2) {
+
+      .trophy-icon span {
+        color: #aaaaaa;
+      }
+    }
+
+    &:nth-of-type(3) {
+
+      .trophy-icon span {
+        color: #AD8A56;
+      }
+    }
+
+    .trophy-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 70px;
+      width: 70px;
+      padding: 5px;
+      background-image: -webkit-linear-gradient(-45deg, $grey-lightest 35%, rgba(0,0,0,0) 35%);
+    }
+    
+    .user-image {
+      width: calc(30% - 50px);
+      padding: 25px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+
+      img {
+        @extend .avatar;
+        width: auto;
+        height: 125px;
+      }
+    }
+
+    .user-details {
+      width: calc(40% - 50px);
+      margin: 25px 0;
+      padding: 0 25px;
+      border-left: solid 2px $grey-lightest;
+  
+      h2,
+      h3,
+      h4 {
+        margin: 0 0 15px;
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        border-top: solid 2px $grey-lightest;
+        margin: 0;
+        padding: 20px 0;
+
+        &:first-of-type {
+          border-top: 0;
+        }
+
+        span {
+          float: right;
+        }
+      }
+    }
+
+    .user-score-wrapper {
+      width: calc(30% - 50px);
+      padding: 25px;
+      text-align: center;
+
+      .user-score {
+        @extend .corner-borders;
+
+        .score-title {
+          background: $grey-lightest;
+          padding: 10px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+
+          h3 {
+            margin: 0;
+          }
+        }
+
+        .score {
+          height: 50px;
+          width: 50px;
+          background: $color-primary-light;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-items: center;
+          margin: 25px auto;
+
+          p {
+            font-size: 1.5rem;
+            color: $white;
+            font-weight: 700;
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
+}

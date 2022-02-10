@@ -36,6 +36,7 @@ class HomeQuestionContainer extends React.Component {
 
     return (
       <div className="home-question-wrapper">
+        {!this.props.questions.length ? <p className="no-questions">Congrats!! You have no unanswered questions.</p> : null}
         {this.props.questions.map((question, index)=> <HomeQuestion key={index} store={this.props.store} question={question} />)}
       </div>
     )
@@ -68,6 +69,7 @@ class Home extends React.Component {
 
     // Method to toggle the displayed tab for answered and unanswered questions
     const toggleQuestions = (tab)=> { this.setState({tab: tab}) }
+    console.log(unAnsweredQuestions);
 
     return(
       <div className="home-wrapper">
