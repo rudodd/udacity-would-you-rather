@@ -69,7 +69,6 @@ class Home extends React.Component {
 
     // Method to toggle the displayed tab for answered and unanswered questions
     const toggleQuestions = (tab)=> { this.setState({tab: tab}) }
-    console.log(unAnsweredQuestions);
 
     return(
       <div className="home-wrapper">
