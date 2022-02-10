@@ -66,7 +66,7 @@ class App extends React.Component {
           <Header store={this.props} />
           <Routes>
             <Route exact path="/" element={<Home store={this.props} />} />
-            <Route exact path="/question/:id" element={<Poll />} />
+            <Route exact path="/questions/:id" element={<Poll />} />
             <Route exact path="/add" element={<ConnectedQuestion />} />
             <Route exact path="/leaderboard" element={<ConnectedLeaders />} />
             <Route path="*" element={<NotFound />} />

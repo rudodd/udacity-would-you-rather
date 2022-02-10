@@ -20,7 +20,7 @@ class HomeQuestion extends React.Component {
           <p>{question.optionOne.text}</p>
           <p>or</p>
           <p>{question.optionTwo.text}</p>
-          <Link to={`/question/${question.id}`}>View Poll</Link>
+          <Link to={`/questions/${question.id}`}>View Poll</Link>
         </div>
       </div>
     )
@@ -58,6 +58,7 @@ class Home extends React.Component {
 
     // Create array of answered questions
     let answeredQuestions = Object.entries(store.users[store.session.user].answers).map((answer)=> store.questions[answer[0]]);
+    answeredQuestions.sort((a, b) => b.timestamp - a.timestamp);
 
     // Create array of unanswered questions
     let unAnsweredQuestions = Object.entries(store.questions).filter((question)=> {
@@ -66,6 +67,7 @@ class Home extends React.Component {
       });
       return !matches.length;
     }).map((question)=> question[1]);
+    unAnsweredQuestions.sort((a, b) =>  b.timestamp - a.timestamp);
 
     // Method to toggle the displayed tab for answered and unanswered questions
     const toggleQuestions = (tab)=> { this.setState({tab: tab}) }
