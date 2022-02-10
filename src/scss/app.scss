@@ -1,0 +1,86 @@
+/**
+ * App Styles ************************************************
+ */
+
+// Universal styles, helper classes, and variables
+
+// - Colors
+$color-primary: #264653;
+$color-primary-light: #2a9d8f;
+$color-primary-lightest: #cef1ed;
+$color-median: #e9c46a;
+$color-secondary-light: #f4a261;
+$color-secondary: #e76f51;
+$grey-lightest: #f4f6f7;
+$grey-light: #e9ecef;
+$grey: #ced4da;
+$grey-dark: #495057;
+$grey-darkest: #343a40;
+$black: #212529;
+$white: #fff;
+$error-dark: #7f0000;
+$error-light: #ffecec;
+
+
+// - Fonts
+$primary-font: 'Open Sans', sans-serif;
+
+// - Helper classes
+.global-width {
+  width: 90%;
+  max-width: 600px;
+  margin: auto auto;
+}
+
+.corner-borders {
+  border: solid 2px $grey;
+  border-radius: 5px;
+}
+
+.button {
+  background: $color-secondary;
+  color: $white;
+  border-radius: 5px;
+  border: 0;
+  padding: 10px 20px;
+  font-size: 1.15rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: solid 2px $grey-light;
+}
+
+// - Accessibility helpers
+// -- Screen readers only
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+//  - Universal styles
+html,
+body {
+  font-family: $primary-font;
+  font-size: 14px;
+  color: $black;
+  margin: 0;
+  padding: 0;
+}
+
+// Import component partials
+@import 'partials/loading';
+@import 'partials/header';
+@import 'partials/not_found';
+@import 'partials/login_form';
+@import 'partials/home';
+@import 'partials/question';
+@import 'partials/new_question';

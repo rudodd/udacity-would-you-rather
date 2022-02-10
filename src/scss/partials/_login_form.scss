@@ -1,0 +1,67 @@
+// Login form styles
+.login-form-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  @extend .global-width;
+  @extend .corner-borders;
+
+  .login-header {
+    background: $grey-lightest;
+    text-align: center;
+    border-bottom: solid 2px $grey;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .login-logo {
+    padding: 35px 35px 0;
+    text-align: center;
+
+    img {
+      width: auto;
+      height: 100px;
+    }
+  }
+
+  .login-form {
+    padding: 25px;
+
+    h2 {
+      text-align: center;
+      color: $color-primary;
+    }
+
+    .user-select {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 30px;
+        width: 30px;
+        @extend .avatar;
+      }
+
+      p {
+        font-family: $primary-font;
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-left: 10px;
+      }
+    }
+
+    button {
+      @extend .button;
+      width: 100%;
+      margin-top: 15px;
+    }
+  }
+}
