@@ -44,7 +44,9 @@ class App extends React.Component {
     // If we don't have initial data yet, show a loading icon
     if (this.props.loading) {
       return (
-        <h1>Loading...</h1>
+        <div className="loading-wrapper">
+          <img src="/img/loading.gif" alt="Loading" />
+        </div>
       )
     }
 

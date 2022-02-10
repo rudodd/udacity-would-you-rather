@@ -1,6 +1,7 @@
 // Import libraries
 import React from 'react';
 import Menu from './Menu';
+import { Link } from 'react-router-dom';
 
 // Import actions
 import loginHandler from '../actions/login';
@@ -44,7 +45,7 @@ class Header extends React.Component {
       <header>
         <div className="wrap">
           <div className="logo-wrap">
-            <img src="/img/logo.svg" alt="Would you rather app" />
+            <Link to="/"><img src="/img/logo.svg" alt="Would you rather app" /></Link>
           </div>
           <nav className="menu-wrap">
             <Menu links={menuLinks} />

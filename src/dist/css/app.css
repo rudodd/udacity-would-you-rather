@@ -44,6 +44,17 @@ body {
   margin: 0;
   padding: 0; }
 
+.loading-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75px;
+  width: 75px; }
+  .loading-wrapper img {
+    height: 100%;
+    width: auto; }
+
 header {
   margin-bottom: 25px; }
   header .wrap {
@@ -570,6 +581,17 @@ header {
         color: #fff;
         font-weight: 700;
         margin: auto; }
+
+.loading-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75px;
+  width: 75px; }
+  .loading-wrapper img {
+    height: 100%;
+    width: auto; }
 
 .login-form-wrapper {
   position: absolute;
